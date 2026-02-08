@@ -3,69 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Falling Hearts Animation</title>
+    <title>Romantic Roses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Balmoral&display=swap" rel="stylesheet">
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f8d7da;
-            color: #721c24;
-            font-family: Arial, sans-serif;
+            font-family: 'Balmoral', sans-serif;
             text-align: center;
+            transition: background-color 2s;
+            background-color: white;
         }
-
-        .heart {
+        .rose-background {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('https://example.com/rose_background.jpg'); /* Replace with rose background URL */
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .falling-hearts {
             animation: fall 5s infinite;
         }
-
         @keyframes fall {
-            0% {
-                top: -10%;
-                opacity: 1;
-            }
-            100% {
-                top: 100%;
-                opacity: 0;
-            }
-        }
-
-        .caption {
-            margin: 20px;
-            font-size: 24px;
-        }
-
-        .buttons {
-            margin-top: 20px;
+            0% { top: -10%; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="caption">Hey you 💖 I know Valentine's Day is just one day out of the year, but it's the perfect excuse to remind you how much you mean to me. Every laugh, every quiet moment, every little thing you do—it all adds up to something truly special. So… will you be my Valentine? Not just for February 14th, but for all the days after that too? I'd love nothing more than to spend it with you—whether we're sharing chocolate, dancing in the kitchen, or just sitting side by side watching the world go by. You're my favorite person. Always.</div>
-    <div class="buttons">
-        <button onclick="alert('Yay! Can’t wait to share this special time with you!')">Yes</button>
-        <button onclick="alert('That's okay! Let's just be great friends!')">No</button>
-    </div>
+    <div class="rose-background"></div>
+    <h1>Join Us in Love</h1>
+    <p>Are you ready for romance?</p>
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+
+    <audio id="yesAudio" src="https://example.com/luther_audio.mp3"></audio> <!-- Replace with audio URL -->
+    <audio id="noAudio" src="https://example.com/buzzer_sound.mp3"></audio> <!-- Replace with buzzer sound URL -->
 
     <script>
-        function createHearts() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = Math.random() * 100 + 'vw';
-            document.body.appendChild(heart);
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        }
-        setInterval(createHearts, 500);
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const body = document.body;
+
+        yesBtn.addEventListener('click', () => {
+            document.getElementById('yesAudio').play();
+            body.style.backgroundColor = 'pink';
+            setTimeout(() => body.style.backgroundColor = 'red', 2000);
+        });
+
+        noBtn.addEventListener('click', () => {
+            document.getElementById('noAudio').play();
+            body.style.backgroundColor = 'black';
+        });
     </script>
 </body>
 </html>
