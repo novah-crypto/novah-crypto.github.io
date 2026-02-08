@@ -3,48 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Valentine's Day Page</title>
+    <title>Falling Hearts Animation</title>
     <style>
         body {
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             margin: 0;
-            background-color: #ffcccb;
-            color: #ff3366;
-            font-family: 'Arial', sans-serif;
+            background-color: #f8d7da;
+            color: #721c24;
+            font-family: Arial, sans-serif;
+            text-align: center;
         }
+
         .heart {
             position: absolute;
-            top: -50px;
-            animation: fall 10s infinite;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            animation: fall 5s infinite;
         }
+
         @keyframes fall {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100vh); }
+            0% {
+                top: -10%;
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        .caption {
+            margin: 20px;
+            font-size: 24px;
+        }
+
+        .buttons {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Happy Valentine's Day!</h1>
-    <div id="heartContainer"></div>
-    <audio id="bgMusic" loop>
-        <source src="path_to_your_music.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <div class="caption">Hey you 💖 I know Valentine's Day is just one day out of the year, but it's the perfect excuse to remind you how much you mean to me. Every laugh, every quiet moment, every little thing you do—it all adds up to something truly special. So… will you be my Valentine? Not just for February 14th, but for all the days after that too? I'd love nothing more than to spend it with you—whether we're sharing chocolate, dancing in the kitchen, or just sitting side by side watching the world go by. You're my favorite person. Always.</div>
+    <div class="buttons">
+        <button onclick="alert('Yay! Can’t wait to share this special time with you!')">Yes</button>
+        <button onclick="alert('That's okay! Let's just be great friends!')">No</button>
+    </div>
+
     <script>
-        // Falling hearts animation
-        const heartContainer = document.getElementById('heartContainer');
-        function createHeart() {
+        function createHearts() {
             const heart = document.createElement('div');
             heart.className = 'heart';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 5 + 5 + 's';
-            heart.innerHTML = '❤️';
-            heartContainer.appendChild(heart);
-            setTimeout(() => heart.remove(), 10000);
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
         }
-        setInterval(createHeart, 500);
-        // Start background music
-        document.getElementById('bgMusic').play();
+        setInterval(createHearts, 500);
     </script>
 </body>
 </html>
